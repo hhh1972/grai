@@ -1,7 +1,6 @@
-
 export const config = {
   runtime: 'edge',
-  regions: ['iad1'], // 固定在美国东部节点
+  regions: ['iad1'],
 };
 
 const CORS = {
@@ -17,8 +16,8 @@ export default async function handler(request) {
   }
 
   const url = new URL(request.url);
-  // /openai/v1/models -> https://api.openai.com/v1/models
-  const path = url.pathname.replace(/^\/openai/, '');
+  // 兼容 /openai/... 和 rewrite 后的 /api/openai/...
+  const path = url.pathname.replace(/^\/(api\/)?openai/, '');
   const target = `https://api.openai.com${path}${url.search}`;
 
   const headers = new Headers();
