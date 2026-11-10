@@ -1,8 +1,6 @@
 {
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/api/proxy"
-    }
+    { "source": "/openai/:path*", "destination": "/api/openai/:path*" },
+    { "source": "/(.*)", "destination": "/api/proxy" }
   ]
 }
